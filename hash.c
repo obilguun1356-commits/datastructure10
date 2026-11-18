@@ -20,9 +20,12 @@ void ht_insert(HashTable *p_hash, const Student x)
  */
 int ht_hash(const char s[])
 {
-        /*
-          Энд функцыг хэрэгжүүл
-        */
+  unsigned long long hash = 0;
+  int i;
+for(i = 0; s[i] != '\0'; i++){
+   hash = hash * 31 + (unsigned char)s[i];
+}
+  return hash % HASH_TABLE_SIZE;
 }
 
 /*
