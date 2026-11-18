@@ -57,9 +57,13 @@ void ht_init(HashTable *p_hash)
  */
 Student *ht_search(HashTable *p_hash, const char id[])
 {
-        /*
-          Энд функцыг хэрэгжүүл
-        */
+int h = ht_hash(id);
+  Elm *p_elm = l_search(&p_hash->h[h], id);
+
+  if (p_elm == NULL)
+    return NULL;
+
+  return &p_elm->x;
 }
 
 /*
@@ -69,9 +73,15 @@ Student *ht_search(HashTable *p_hash, const char id[])
  */
 void ht_update(HashTable *p_hash, const Student x)
 {
-        /*
-          Энд функцыг хэрэгжүүл 
-        */
+       Student *p = ht_search(p_hash, x.id);
+
+  if(p != NULL){
+    strcpy(p->ovog, x.ovog);
+    strcpy(p->ner, x.ner);
+}
+else{
+  ht_insert(p_hash, x);
+}
 }
 
 /*
