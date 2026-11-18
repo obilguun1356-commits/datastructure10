@@ -90,9 +90,30 @@ else{
  */
 void ht_del(HashTable *p_hash, const char id[])
 {
-        /*
-          Энд функцыг хэрэгжүүл 
-        */
+int h = ht_hash(id);
+
+
+  Elm *p = p_hash->h[h].head;
+  Elm *prev = NULL;
+
+  while (p != NULL){
+    if(strcmp(p->x.id, id) == 0){
+
+      if(prev == NULL)
+        p_hash->h[h].head = p->next;
+      else
+        prev-> next = p-> next;
+
+   if (p == p_hash->h[h].tail)
+    p_hash->h[h].tail = prev;
+    free(p);
+    p_hash->h[h].len--;
+ return;
+    }
+
+    prev p;
+    p = p->next;
+  }
 }
 
 /*
